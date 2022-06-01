@@ -74,6 +74,9 @@ def call_open():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=80, debug=True)
     # GPIO.cleanup()
     print('GPIO cleanup complete!\n')
+
+
+# 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

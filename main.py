@@ -1,12 +1,12 @@
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 from flask import Flask, render_template, redirect, url_for
 
 
 class Door():
-    # GPIO.setmode(GPIO.BCM)
-    # GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    # GPIO.setup(26, GPIO.OUT)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(26, GPIO.OUT)
 
     def __init__(self):
         self.door_open = True

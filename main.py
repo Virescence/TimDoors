@@ -18,9 +18,9 @@ class Door():
             return "Door was already open!"
         # call code to open door
         print('opening door\n')
-        # GPIO.output(26, GPIO.HIGH)
+        GPIO.output(26, GPIO.HIGH)
         time.sleep(2)
-        # GPIO.output(26, GPIO.LOW)
+        GPIO.output(26, GPIO.LOW)
         print('door opened\n')
 
         return "Opening door..."
@@ -30,9 +30,9 @@ class Door():
             return "Door was already closed!"
         # call code to close door
         print('closing door\n')
-        # GPIO.output(26, GPIO.HIGH)
+        GPIO.output(26, GPIO.LOW)
         time.sleep(2)
-        # GPIO.output(26, GPIO.LOW)
+        GPIO.output(26, GPIO.HIGH)
         print('closed door\n')
 
         return "Closing door..."

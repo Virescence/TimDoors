@@ -10,7 +10,7 @@ class Door():
         GPIO.setup(26, GPIO.OUT)
         self.door_open = False
         self.door_is_open_message = "<br><br>Door is currently OPEN <br><br> click to close!<br><br><br>", "door_opened"
-        self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br><br>", "door_closed"
+        self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br>", "door_closed"
 
     def open_door(self):
         print("Status of pin 25 is: ", GPIO.input(25))

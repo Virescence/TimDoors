@@ -34,7 +34,7 @@ class Door():
         return self.door_is_closed_message
 
     def update_door_status(self):
-        self.door_open = GPIO.input(25)
+        self.door_open = not GPIO.input(25)
 
 
 app = Flask(__name__)

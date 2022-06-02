@@ -30,7 +30,7 @@ class Door():
 
     def get_door_status(self):
         self.update_door_status()
-        if self.door_open:
+        if not self.door_open:
             return self.door_is_open_message
         return self.door_is_closed_message
 

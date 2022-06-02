@@ -14,7 +14,7 @@ class Door():
         self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br>", "door_closed"
 
     def close_door(self):
-        self.update_door_status
+        self.update_door_status()
         print(":door_open: ", self.door_open)
         if self.door_open == 1:
             print("Door already closed")

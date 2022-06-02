@@ -14,10 +14,11 @@ class Door():
         self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br>", "door_closed"
 
     def close_door(self):
+        self.update_door_status
         print("Status of pin 25 is: ", GPIO.input(25))
-        # if not self.door_open:
-            # return "Door was already closed!"
-        # call code to close door
+        if self.door_open:
+            return "Door already closed"
+
         print('closing door\n')
         GPIO.output(26, GPIO.HIGH)
         time.sleep(.5)

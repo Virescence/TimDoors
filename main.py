@@ -10,7 +10,7 @@ class Door():
         GPIO.setup(26, GPIO.OUT)
         self.door_open = False
         self.door_is_open_message = "<br><br>Door is currently OPEN <br><br> click to close!<br><br><br>", "door_opened"
-        self.door_is_closed_message = "<br><br>Door is currently CLOSED <br><br> click to open!<br><br><br>", "door_closed"
+        self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br><br>", "door_closed"
 
     def open_door(self):
         print("Status of pin 25 is: ", GPIO.input(25))
@@ -65,7 +65,6 @@ def call_close():
 
 @app.route("/open/")
 def call_open():
-    door.open_door()
     return redirect(url_for('index'))
 
 
@@ -76,4 +75,3 @@ if __name__ == "__main__":
     print('GPIO cleanup complete!\n')
 
 
-#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

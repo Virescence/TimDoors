@@ -8,22 +8,10 @@ class Door():
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(26, GPIO.OUT)
+        GPIO.output(26, GPIO.LOW)
         self.door_open = False
         self.door_is_open_message = "<br><br>Door is currently OPEN <br><br> click to close!<br><br><br>", "door_opened"
         self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br>", "door_closed"
-
-    def open_door(self):
-        print("Status of pin 25 is: ", GPIO.input(25))
-        # if self.door_open:
-            # return "Door was already open!"
-        # call code to open door
-        print('opening door\n')
-        GPIO.output(26, GPIO.HIGH)
-        time.sleep(2)
-        GPIO.output(26, GPIO.LOW)
-        print('door opened\n')
-
-        return "Opening door..."
 
     def close_door(self):
         print("Status of pin 25 is: ", GPIO.input(25))
@@ -31,9 +19,9 @@ class Door():
             # return "Door was already closed!"
         # call code to close door
         print('closing door\n')
-        GPIO.output(26, GPIO.LOW)
-        time.sleep(2)
         GPIO.output(26, GPIO.HIGH)
+        time.sleep(.5)
+        GPIO.output(26, GPIO.LOW)
         print('closed door\n')
 
         return "Closing door..."

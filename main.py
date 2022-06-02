@@ -4,12 +4,11 @@ from flask import Flask, render_template, redirect, url_for
 
 
 class Door():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(26, GPIO.OUT)
-
     def __init__(self):
-        self.door_open = True
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(26, GPIO.OUT)
+        self.door_open = False
         self.door_is_open_message = "<br><br>Door is currently OPEN <br><br> click to close!<br><br><br>", "door_opened"
         self.door_is_closed_message = "<br><br>Door is currently CLOSED <br><br> click to open!<br><br><br>", "door_closed"
 
@@ -41,16 +40,11 @@ class Door():
 
     def get_door_status(self):
         if self.door_open:
-            self.door_open = False
             return self.door_is_open_message
-        self.door_open = True
         return self.door_is_closed_message
 
     def update_door_status(self):
-        # call code to get status of door
-        # self.door_open = (GPIO.input(25))
-        self.door_open = not self.door_open
-        # self.door_open = not self.door_open
+        self.door_open = GPIO.input(25)
 
 
 app = Flask(__name__)

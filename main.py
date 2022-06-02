@@ -15,8 +15,9 @@ class Door():
 
     def close_door(self):
         self.update_door_status
-        print("Status of pin 25 is: ", GPIO.input(25))
-        if self.door_open:
+        print(":door_open: ", self.door_open)
+        if self.door_open == 0:
+            print("Door already closed")
             return "Door already closed"
 
         print('closing door\n')

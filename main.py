@@ -67,6 +67,7 @@ def index():
 
 @app.route("/close/")
 def call_close():
+    print("close door called in Flask")
     door.close_door()
     return redirect(url_for('index'))
 

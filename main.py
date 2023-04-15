@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from flask import Flask, render_template, redirect, url_for, jsonify
+from flask import Flask, render_template, redirect, url_for, jsonify, session, request
 import Adafruit_DHT
 
 
@@ -60,6 +60,13 @@ app = Flask(__name__)
 door = Door()
 
 
+@app.before_request
+def before_request_func():
+    print("before_request executing!")
+    if not session["logged_in"]:
+        return redirect(url_for('check_password'))
+    return redirect(url_for('index'))
+
 @app.route("/")
 def index():
     door_status, door_color = door.get_door_status()
@@ -86,6 +93,20 @@ def get_temperate_status():
     door.update_temperature_status()
     return jsonify({"temperature": door.temperature, "humidity": door.humidity})
 
+@app.route("/need_password")
+def check_password():
+    return render_template('password.html')
+
+@app.route("/submit_password", methods=["POST"])
+def submit_password():
+    password = request.form["password"]
+
+    # Validate the password (replace with your own password validation logic)
+    if password == "test":
+        session["logged_in"] = True
+        return redirect(url_for("index"))
+    else:
+        return render_template('password.html', bad_password="Incorrect Password")
 
 
 if __name__ == "__main__":

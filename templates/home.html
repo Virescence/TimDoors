@@ -50,27 +50,27 @@
         </div>
       </div>
     </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-      $(document).ready(function() {
-          function updateButton() {
-              $.getJSON("/get_door_status/", function(data) {
-                  if (data.door_color === "door_closed") {
-                      $("a.door-link").attr("href", "../open");
-                      $(".button-82-edge").removeClass("button-82-edge-door_opened").addClass("button-82-edge-door_closed");
-                      $(".button-82-front").removeClass("button-82-front-door_opened").addClass("button-82-front-door_closed");
-                  } else if (data.door_color === "door_opened") {
-                      $("a.door-link").attr("href", "../close");
-                      $(".button-82-edge").removeClass("button-82-edge-door_closed").addClass("button-82-edge-door_opened");
-                      $(".button-82-front").removeClass("button-82-front-door_closed").addClass("button-82-front-door_opened");
-                  }
-                  $(".button-text").html(data.door_status);
-              });
-          }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function updateButton() {
+            $.getJSON("/get_door_status/", function(data) {
+                if (data.door_color === "door_closed") {
+                    $("a.door-link").attr("href", "../open");
+                    $(".button-82-edge").removeClass("button-82-edge-door_opened").addClass("button-82-edge-door_closed");
+                    $(".button-82-front").removeClass("button-82-front-door_opened").addClass("button-82-front-door_closed");
+                } else if (data.door_color === "door_opened") {
+                    $("a.door-link").attr("href", "../close");
+                    $(".button-82-edge").removeClass("button-82-edge-door_closed").addClass("button-82-edge-door_opened");
+                    $(".button-82-front").removeClass("button-82-front-door_closed").addClass("button-82-front-door_opened");
+                }
+                $(".button-text").html(data.door_status);
+            });
+        }
 
-          updateButton();  // Call updateButton initially to set the button properties when the page loads
-          setInterval(updateButton, 10000);  // Call updateButton every 10 seconds (10000 milliseconds)
-      });
-  </script>
+        updateButton();  // Call updateButton initially to set the button properties when the page loads
+        setInterval(updateButton, 10000);  // Call updateButton every 10 seconds (10000 milliseconds)
+    });
+</script>
   </body>
 </html>

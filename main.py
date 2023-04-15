@@ -50,7 +50,7 @@ class Door():
         if not temperature:
             temperature = "NO RESPONSE FROM SENSOR"
         self.humidity = int(humidity)
-        self.temperature = (int(temperature) * 1.8) + 32
+        self.temperature = rount((int(temperature) * 1.8) + 32, 2)
         print("TEMP STATUS: ", humidity, temperature)
 
 

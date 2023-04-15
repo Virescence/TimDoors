@@ -63,7 +63,8 @@ door = Door()
 @app.before_request
 def before_request_func():
     print("before_request executing!")
-    if not session["logged_in"]:
+    if "logged_in" in session and not session["logged_in"]:
+        session["logged_in"] = False
         return redirect(url_for('check_password'))
     return redirect(url_for('index'))
 

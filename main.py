@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, url_for, jsonify, session, r
 import Adafruit_DHT
 import secret
 
+
 class Door():
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
@@ -50,7 +51,7 @@ class Door():
         if not temperature:
             temperature = "NO RESPONSE FROM SENSOR"
         self.humidity = int(humidity)
-        self.temperature = rount((int(temperature) * 1.8) + 32, 2)
+        self.temperature = int((int(temperature) * 1.8) + 32)
         print("TEMP STATUS: ", humidity, temperature)
 
 

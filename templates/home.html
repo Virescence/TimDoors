@@ -47,8 +47,12 @@
                 <a class="door-link" href="#"><div><span>{{button_text|safe}}</span></div></a>
             </span>
           </button>
-          <div id="temperature-display">Temperature: N/A</div>
-          <div id="humidity-display">Humidity: N/A</div>
+          </br>
+          </br>
+          <div class="temperature-humidity-container">
+              <div class="temperature-display" id="temperature-display">Temperature: N/A</div>
+              <div class="humidity-display" id="humidity-display">Humidity: N/A</div>
+          </div>
         </div>
       </div>
     </div>
@@ -77,8 +81,8 @@
         }
         updateTemperature();
         updateButton();
-        setInterval(updateButton, 10000);
-        setInterval(updateTemperature, 10000);
+        setInterval(updateButton, 1000);
+        setInterval(updateTemperature, 1000);
 
     });
 </script>

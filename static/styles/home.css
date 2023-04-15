@@ -181,3 +181,19 @@
 .button-text {
     text-shadow: 1px 2px #2b2727;
 }
+
+.temperature-humidity-container {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.temperature-display, .humidity-display {
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}

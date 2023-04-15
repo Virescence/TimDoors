@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, jsonify
 
 
 class Door():
@@ -57,6 +57,11 @@ def call_close():
 @app.route("/open/")
 def call_open():
     return redirect(url_for('index'))
+
+@app.route("/get_door_status/")
+def get_door_status():
+    door_status, door_color = door.get_door_status()
+    return jsonify({"door_status": door_status, "door_color": door_color})
 
 
 

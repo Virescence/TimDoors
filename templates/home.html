@@ -77,7 +77,7 @@
         }
         function updateTemperature() {
             $.getJSON("/get_temperature_status/", function(data) {
-                $("#temperature-display").text("Temperature: " + data.temperature.toFixed(1) + "°C ");
+                $("#temperature-display").text("Temperature: " + data.temperature + "°C ");
                 $("#humidity-display").text("Humidity: " + data.humidity + "%");
             });
         }

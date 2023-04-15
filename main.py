@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from flask import Flask, render_template, redirect, url_for, jsonify, session, request, g
 import Adafruit_DHT
-
+import secret
 
 class Door():
     def __init__(self):
@@ -57,7 +57,7 @@ class Door():
 
 
 app = Flask(__name__)
-app.secret_key = "timdoors123"
+app.secret_key = secret.secret_key
 door = Door()
 
 
@@ -108,7 +108,7 @@ def submit_password():
     password = request.form["password"]
 
     # Validate the password (replace with your own password validation logic)
-    if password == "test":
+    if password == secret.password:
         session["logged_in"] = True
         return redirect(url_for("index"))
     else:

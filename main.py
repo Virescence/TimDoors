@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 from flask import Flask, render_template, redirect, url_for, jsonify
+import Adafruit_DHT
 
 
 class Door():
@@ -9,6 +10,10 @@ class Door():
         GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(26, GPIO.OUT)
         GPIO.output(26, GPIO.LOW)
+        self.temp_sensor = Adafruit_DHT.DHT11
+        self.temp_pin = 4
+        self.humidity = 0
+        self.temperature = 0
         self.door_open = False
         self.door_is_open_message = "<br><br>Door is currently OPEN <br><br> click to close!<br><br><br>", "door_opened"
         self.door_is_closed_message = "<br><br><br>Door is currently CLOSED<br><br>", "door_closed"
@@ -38,6 +43,18 @@ class Door():
         self.door_open = GPIO.input(25)
         print("DOOR STATUS: ", self.door_open)
 
+    def update_temperature_status(self):
+        humidity, temperature = Adafruit_DHT.read_retry(self.temp_sensor, self.temp_pin)
+        if not humidity:
+            humidity = "NO RESPONSE FROM SENSOR"
+        if not temperature:
+            temperature = "NO RESPONSE FROM SENSOR"
+        self.humidity = humidity
+        self.temperature = temperature
+        print("TEMP STATUS: ", humidity, temperature)
+
+
+
 
 app = Flask(__name__)
 door = Door()
@@ -62,6 +79,11 @@ def call_open():
 def get_door_status():
     door_status, door_color = door.get_door_status()
     return jsonify({"door_status": door_status, "door_color": door_color})
+
+@app.route("/get_temperature_status/")
+def get_temperate_status():
+    door.update_temperature_status()
+    return jsonify({"temperature": door.temperature, "humidity": door.humidity})
 
 
 

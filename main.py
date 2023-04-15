@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from flask import Flask, render_template, redirect, url_for, jsonify, session, request
+from flask import Flask, render_template, redirect, url_for, jsonify, session, request, g
 import Adafruit_DHT
 
 
@@ -57,16 +57,21 @@ class Door():
 
 
 app = Flask(__name__)
+app.secret_key = "timdoors123"
 door = Door()
 
 
 @app.before_request
 def before_request_func():
     print("before_request executing!")
-    if "logged_in" in session and not session["logged_in"]:
-        session["logged_in"] = False
+    g.user = None
+    if "logged_in" in session:
+        g.user = session["logged_in"]
+
+    if not g.user and request.endpoint not in ['check_password', 'submit_password']:
         return redirect(url_for('check_password'))
-    return redirect(url_for('index'))
+    elif g.user and request.endpoint == 'check_password':
+        return redirect(url_for('index'))
 
 @app.route("/")
 def index():

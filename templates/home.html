@@ -41,11 +41,13 @@
           <h1 class="home-text">TimDoors!</h1>
           <!-- HTML !-->
           <button class="button-82-pushable" role="button">
-            <span class="button-82-shadow"></span>
-            <span class="button-82-edge"></span>
-            <span class="button-82-front button-text">
-                <a class="door-link" href="#"><div><span>{{button_text|safe}}</span></div></a>
-            </span>
+              <span class="button-82-shadow"></span>
+              <span class="button-82-edge"></span>
+              <a class="door-link" href="#">
+                  <span class="button-82-front button-text">
+                      <div><span>{{button_text|safe}}</span></div>
+                  </span>
+              </a>
           </button>
           </br>
           </br>
@@ -76,7 +78,7 @@
         function updateTemperature() {
             $.getJSON("/get_temperature_status/", function(data) {
                 $("#temperature-display").text("Temperature: " + data.temperature.toFixed(1) + "°C ");
-                $("#humidity-display").text("Humidity: " + data.humidity);
+                $("#humidity-display").text("Humidity: " + data.humidity + "%");
             });
         }
         updateTemperature();

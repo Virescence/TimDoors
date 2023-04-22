@@ -1,3 +1,21 @@
+/* General styles */
+html {
+  font-family: Inter;
+  font-size: 16px;
+}
+
+body {
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.15;
+  color: var(--dl-color-gray-black);
+  background-color: var(--dl-color-gray-white);
+}
+
+/* Home container styles */
 .home-container {
   width: 100%;
   display: flex;
@@ -7,43 +25,37 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .home-container1 {
-  width: 800px;
-  height: 600px;
+  max-width: 800px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
 }
+
 .home-text {
   margin-top: var(--dl-space-space-twounits);
   margin-bottom: var(--dl-space-space-twounits);
 }
-.door_closed {
-  width: 200px;
-  height: 210px;
+
+.temperature-humidity-container {
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
-  line-height: 1em;
-  border-width: var(--dl-size-size-xsmall);
-  text-decoration: none;
-  background-color: #32A94C;
-  list-style-image: none;
+  margin-top: 20px;
 }
 
-.door_opened {
-  width: 200px;
-  height: 210px;
-  text-align: center;
-  line-height: 1em;
-  border-width: var(--dl-size-size-xsmall);
-  text-decoration: none;
-  background-color: #BF2626;
-  list-style-image: none;
+.temperature-display, .humidity-display, .update-display {
+  margin-bottom: 10px;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-
-/* CSS */
+/* Button styles */
 .button-82-pushable {
   position: relative;
   border: none;
@@ -67,28 +79,10 @@
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
   transform: translateY(7px);
-  transition:
-    transform
-    500ms
-    cubic-bezier(.17,.67,.83,.67);
+  transition: transform 500ms cubic-bezier(.17, .67, .83, .67);
 }
 
-.button-82-edge-door_opened {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-  background: linear-gradient(
-    to left,
-    hsl(340deg 100% 16%) 0%,
-    hsl(340deg 100% 32%) 8%,
-    hsl(340deg 100% 32%) 92%,
-    hsl(340deg 100% 16%) 100%
-  );
-}
-
+.button-82-edge-door_opened,
 .button-82-edge-door_closed {
   position: absolute;
   top: 0;
@@ -96,31 +90,17 @@
   width: 100%;
   height: 100%;
   border-radius: 12px;
-  background: linear-gradient(
-    to left,
-    hsl(120deg 100% 16%) 0%,
-    hsl(120deg 100% 32%) 8%,
-    hsl(120deg 100% 32%) 92%,
-    hsl(120deg 100% 16%) 100%
-  );
 }
 
-.button-82-front-door_opened {
-  display: block;
-  position: relative;
-  padding: 12px 27px;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  color: white;
-  background: hsl(0deg 100% 35%);
-  will-change: transform;
-  transform: translateY(-4px);
-  transition:
-    transform
-    500ms
-    cubic-bezier(.17,.67,.83,.67);
+.button-82-edge-door_opened {
+  background: linear-gradient(to left, hsl(340deg 100% 16%) 0%, hsl(340deg 100% 32%) 8%, hsl(340deg 100% 32%) 92%, hsl(340deg 100% 16%) 100%);
 }
 
+.button-82-edge-door_closed {
+  background: linear-gradient(to left, hsl(120deg 100% 16%) 0%, hsl(120deg 100% 32%) 8%, hsl(120deg 100% 32%) 92%, hsl(120deg 100% 16%) 100%);
+}
+
+.button-82-front-door_opened,
 .button-82-front-door_closed {
   display: block;
   position: relative;
@@ -128,19 +108,48 @@
   border-radius: 12px;
   font-size: 1.1rem;
   color: white;
-  background: hsl(120deg 100% 40%);
   will-change: transform;
-  transform: translateY(-4px);
-  transition:
-    transform
-    500ms
-    cubic-bezier(.17,.67,.83,.67);
+   transform: translateY(-4px);
+  transition: transform 500ms cubic-bezier(.17, .67, .83, .67);
 }
 
+.button-82-front-door_opened {
+  background: hsl(0deg 100% 35%);
+}
+
+.button-82-front-door_closed {
+  background: hsl(120deg 100% 40%);
+}
+
+.button-text {
+  text-shadow: 1px 2px #2b2727;
+}
+
+/* Media queries */
 @media (min-width: 768px) {
   .button-82-front {
     font-size: 1.25rem;
     padding: 12px 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px;
+  }
+
+  .home-text {
+    font-size: 4vw;
+  }
+
+  .temperature-display, .humidity-display, .update-display {
+    font-size: 3vw;
+  }
+
+  .button-82-pushable {
+    font-size: 3vw;
+    width: 80vw;
+    height: 12vw;
   }
 }
 
@@ -150,10 +159,7 @@
 
 .button-82-pushable:hover .button-82-front {
   transform: translateY(-10px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .button-82-pushable:active .button-82-front {
@@ -163,10 +169,7 @@
 
 .button-82-pushable:hover .button-82-shadow {
   transform: translateY(4px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .button-82-pushable:active .button-82-shadow {
@@ -176,63 +179,4 @@
 
 .button-82-pushable:focus:not(:focus-visible) {
   outline: none;
-}
-
-.button-text {
-    text-shadow: 1px 2px #2b2727;
-}
-
-.temperature-humidity-container {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.temperature-display, .humidity-display {
-    margin-bottom: 10px;
-    display: inline-block;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-
-@media (max-width: 768px) {
-  .home-container {
-    padding: 20px; /* Add some padding for smaller screens */
-  }
-
-  .home-text {
-    font-size: 4vw; /* Adjust the font size based on the viewport width */
-  }
-
-  .temperature-display,
-  .humidity-display,
-  .update-display {
-    font-size: 3vw; /* Adjust the font size based on the viewport width */
-  }
-
-  .button-82-pushable {
-    font-size: 3vw; /* Adjust the font size based on the viewport width */
-    width: 80vw; /* Make the button width relative to the viewport width */
-    height: 12vw; /* Make the button height relative to the viewport width */
-  }
-
-  .home-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* Make the container take up at least the full viewport height */
-      padding: 20px; /* Add some padding for smaller screens */
-  }
-
-    .home-container1 {
-      max-width: 800px; /* Set a maximum width for the content */
-      width: 100%; /* Make the content take up the full width of the container */
-      text-align: center; /* Center the text */
-  }
-
 }

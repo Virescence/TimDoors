@@ -74,6 +74,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-bottom: 20px; /* Add margin below the button */
 }
 
 .button-82-shadow {

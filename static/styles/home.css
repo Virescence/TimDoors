@@ -198,6 +198,8 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
+
 @media (max-width: 768px) {
   .home-container {
     padding: 20px; /* Add some padding for smaller screens */
@@ -218,4 +220,19 @@
     width: 80vw; /* Make the button width relative to the viewport width */
     height: 12vw; /* Make the button height relative to the viewport width */
   }
+
+  .home-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Make the container take up at least the full viewport height */
+      padding: 20px; /* Add some padding for smaller screens */
+  }
+
+    .home-container1 {
+      max-width: 800px; /* Set a maximum width for the content */
+      width: 100%; /* Make the content take up the full width of the container */
+      text-align: center; /* Center the text */
+  }
+
 }

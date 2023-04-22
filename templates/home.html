@@ -54,6 +54,7 @@
           <div class="temperature-humidity-container">
               <div class="temperature-display" id="temperature-display">Temperature: N/A</div>
               <div class="humidity-display" id="humidity-display">Humidity: N/A</div>
+              <div class="update-display" id="update-display">Last Update: N/A</div>
           </div>
         </div>
       </div>
@@ -79,7 +80,15 @@
             $.getJSON("/get_temperature_status/", function(data) {
                 $("#temperature-display").text("Temperature: " + data.temperature + "°F ");
                 $("#humidity-display").text("Humidity: " + data.humidity + "%");
+                $("#update-display").text("Last Update: " + getCurrentTime());
             });
+        }
+        function getCurrentTime() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            return hours + ":" + minutes + ":" + seconds;
         }
         updateTemperature();
         updateButton();

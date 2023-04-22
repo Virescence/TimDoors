@@ -197,3 +197,25 @@
     background-color: #f0f0f0;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px; /* Add some padding for smaller screens */
+  }
+
+  .home-text {
+    font-size: 4vw; /* Adjust the font size based on the viewport width */
+  }
+
+  .temperature-display,
+  .humidity-display,
+  .update-display {
+    font-size: 3vw; /* Adjust the font size based on the viewport width */
+  }
+
+  .button-82-pushable {
+    font-size: 3vw; /* Adjust the font size based on the viewport width */
+    width: 80vw; /* Make the button width relative to the viewport width */
+    height: 12vw; /* Make the button height relative to the viewport width */
+  }
+}

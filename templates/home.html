@@ -33,32 +33,33 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body>
     <div>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home.css') }}">
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
 
       <div class="home-container">
         <div class="home-container1">
           <h1 class="home-text">TimDoors!</h1>
-          <div class="button-temp-humidity-wrapper">
-            <button class="button-82-pushable door_closed" role="button">
-              <span class="button-82-shadow"></span>
-              <span class="button-82-edge"></span>
-              <a class="door-link" href="#">
-                <span class="button-82-front button-text">
-                  <div><span>{{ button_text | safe }}</span></div>
-                </span>
-              </a>
+          <div class="button-and-data-container"> <!-- New flex container -->
+            <!-- HTML !-->
+            <button class="button-82-pushable" role="button">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <a class="door-link" href="#">
+                    <span class="button-82-front button-text">
+                        <div><span>{{button_text|safe}}</span></div>
+                    </span>
+                </a>
             </button>
             <div class="temperature-humidity-container">
-              <div class="temperature-display" id="temperature-display">Temperature: N/A</div>
-              <div class="humidity-display" id="humidity-display">Humidity: N/A</div>
-              <div class="update-display" id="update-display">Last Update: N/A</div>
+                <div class="temperature-display" id="temperature-display">Temperature: N/A</div>
+                <div class="humidity-display" id="humidity-display">Humidity: N/A</div>
+                <div class="update-display" id="update-display">Last Update: N/A</div>
             </div>
-          </div>
+          </div> <!-- End of new flex container -->
         </div>
       </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

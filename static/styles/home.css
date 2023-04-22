@@ -188,3 +188,9 @@ body {
 .button-82-pushable:focus:not(:focus-visible) {
   outline: none;
 }
+
+.button-and-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

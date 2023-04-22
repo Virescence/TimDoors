@@ -74,13 +74,13 @@
                     $(".button-82-front").attr('class', 'button-82-front button-82-front-door_opened button-text');
                 }
                 $(".button-text").html(data.door_status);
+                $("#update-display").text("Last Update: " + getCurrentTime());
             });
         }
         function updateTemperature() {
             $.getJSON("/get_temperature_status/", function(data) {
                 $("#temperature-display").text("Temperature: " + data.temperature + "°F ");
                 $("#humidity-display").text("Humidity: " + data.humidity + "%");
-                $("#update-display").text("Last Update: " + getCurrentTime());
             });
         }
         function getCurrentTime() {

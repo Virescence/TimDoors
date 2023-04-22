@@ -35,68 +35,68 @@
   </head>
   <body>
     <div>
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/home.css') }}">
 
       <div class="home-container">
         <div class="home-container1">
           <h1 class="home-text">TimDoors!</h1>
-          <!-- HTML !-->
-          <button class="button-82-pushable" role="button">
+          <div class="button-temp-humidity-wrapper">
+            <button class="button-82-pushable door_closed" role="button">
               <span class="button-82-shadow"></span>
               <span class="button-82-edge"></span>
               <a class="door-link" href="#">
-                  <span class="button-82-front button-text">
-                      <div><span>{{button_text|safe}}</span></div>
-                  </span>
+                <span class="button-82-front button-text">
+                  <div><span>{{ button_text | safe }}</span></div>
+                </span>
               </a>
-          </button>
-          </br>
-          </br>
-          <div class="temperature-humidity-container">
+            </button>
+            <div class="temperature-humidity-container">
               <div class="temperature-display" id="temperature-display">Temperature: N/A</div>
               <div class="humidity-display" id="humidity-display">Humidity: N/A</div>
               <div class="update-display" id="update-display">Last Update: N/A</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        function updateButton() {
-            $.getJSON("/get_door_status/", function(data) {
-                if (data.door_color === "door_closed") {
-                    $("a.door-link").attr("href", "../open");
-                    $(".button-82-edge").attr('class', 'button-82-edge button-82-edge-door_closed');
-                    $(".button-82-front").attr('class', 'button-82-front button-82-front-door_closed button-text');
-                } else if (data.door_color === "door_opened") {
-                    $("a.door-link").attr("href", "../close");
-                    $(".button-82-edge").attr('class', 'button-82-edge button-82-edge-door_opened');
-                    $(".button-82-front").attr('class', 'button-82-front button-82-front-door_opened button-text');
-                }
-                $(".button-text").html(data.door_status);
-                $("#update-display").text("Last Update: " + getCurrentTime());
-            });
-        }
-        function updateTemperature() {
-            $.getJSON("/get_temperature_status/", function(data) {
-                $("#temperature-display").text("Temperature: " + data.temperature + "°F ");
-                $("#humidity-display").text("Humidity: " + data.humidity + "%");
-            });
-        }
-        function getCurrentTime() {
-            let now = new Date();
-            let hours = now.getHours().toString().padStart(2, '0');
-            let minutes = now.getMinutes().toString().padStart(2, '0');
-            let seconds = now.getSeconds().toString().padStart(2, '0');
-            return hours + ":" + minutes + ":" + seconds;
-        }
-        updateTemperature();
-        updateButton();
-        setInterval(updateButton, 5000);
-        setInterval(updateTemperature, 100000);
 
-    });
-</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function updateButton() {
+                $.getJSON("/get_door_status/", function(data) {
+                    if (data.door_color === "door_closed") {
+                        $("a.door-link").attr("href", "../open");
+                        $(".button-82-edge").attr('class', 'button-82-edge button-82-edge-door_closed');
+                        $(".button-82-front").attr('class', 'button-82-front button-82-front-door_closed button-text');
+                    } else if (data.door_color === "door_opened") {
+                        $("a.door-link").attr("href", "../close");
+                        $(".button-82-edge").attr('class', 'button-82-edge button-82-edge-door_opened');
+                        $(".button-82-front").attr('class', 'button-82-front button-82-front-door_opened button-text');
+                    }
+                    $(".button-text").html(data.door_status);
+                    $("#update-display").text("Last Update: " + getCurrentTime());
+                });
+            }
+            function updateTemperature() {
+                $.getJSON("/get_temperature_status/", function(data) {
+                    $("#temperature-display").text("Temperature: " + data.temperature + "°F ");
+                    $("#humidity-display").text("Humidity: " + data.humidity + "%");
+                });
+            }
+            function getCurrentTime() {
+                let now = new Date();
+                let hours = now.getHours().toString().padStart(2, '0');
+                let minutes = now.getMinutes().toString().padStart(2, '0');
+                let seconds = now.getSeconds().toString().padStart(2, '0');
+                return hours + ":" + minutes + ":" + seconds;
+            }
+            updateTemperature();
+            updateButton();
+            setInterval(updateButton, 5000);
+            setInterval(updateTemperature, 100000);
+
+        });
+    </script>
   </body>
 </html>
